@@ -58,17 +58,74 @@ export function InventoryPage() {
         <>
             <Breadcrumb />
 
-            <h1 className="heading-xl mb-md">Inventory</h1>
+            <h1 className="heading-xl mb-md" style={{
+                letterSpacing: '0.5px',
+                textTransform: 'uppercase',
+                fontSize: '1.5rem',
+                fontWeight: '600',
+                color: 'var(--text-main)'
+            }}>
+                Your Filament Vault
+            </h1>
 
-            {/* Stats Summary (Mini Dashboard) */}
-            <div className="stats-row">
-                <div>
-                    <span className="stat-label">Total Rolls</span>
-                    <span className="stat-value">{stats.totalRolls}</span>
+            {/* Stats Summary - Treasure Theme */}
+            <div className="stats-row" style={{
+                display: 'flex',
+                gap: 'var(--space-xl)',
+                marginBottom: 'var(--space-xl)',
+                padding: 'var(--space-md)',
+                background: 'var(--bg-panel)',
+                borderRadius: 'var(--radius-md)',
+                border: '1px solid var(--border-subtle)',
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)'
+            }}>
+                <div style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: 'var(--space-xs)'
+                }}>
+                    <span style={{
+                        fontSize: '0.75rem',
+                        textTransform: 'uppercase',
+                        letterSpacing: '1px',
+                        color: 'var(--text-muted)'
+                    }}>
+                        Rolls
+                    </span>
+                    <span style={{
+                        fontSize: '1.75rem',
+                        fontWeight: 'bold',
+                        background: 'linear-gradient(135deg, var(--accent-gold), var(--primary))',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        backgroundClip: 'text'
+                    }}>
+                        {stats.totalRolls}
+                    </span>
                 </div>
-                <div>
-                    <span className="stat-label">Total Weight</span>
-                    <span className="stat-value">{(stats.totalWeight / 1000).toFixed(1)} kg</span>
+                <div style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: 'var(--space-xs)'
+                }}>
+                    <span style={{
+                        fontSize: '0.75rem',
+                        textTransform: 'uppercase',
+                        letterSpacing: '1px',
+                        color: 'var(--text-muted)'
+                    }}>
+                        Total Weight
+                    </span>
+                    <span style={{
+                        fontSize: '1.75rem',
+                        fontWeight: 'bold',
+                        background: 'linear-gradient(135deg, var(--primary), var(--accent-purple))',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        backgroundClip: 'text'
+                    }}>
+                        {(stats.totalWeight / 1000).toFixed(1)} kg
+                    </span>
                 </div>
             </div>
 

@@ -3,7 +3,7 @@ import type { Filament, FilamentContextType } from '../types';
 
 const FilamentContext = createContext<FilamentContextType | undefined>(undefined);
 
-const STORAGE_KEY = 'filament-inventory-v1';
+const STORAGE_KEY = 'filacrypt-inventory-v1';
 
 interface FilamentProviderProps {
     children: ReactNode;

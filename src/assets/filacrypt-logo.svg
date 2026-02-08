@@ -1,0 +1,72 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="mainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#bd00ff;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#6d28d9;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00e0ff;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="spoolGlow">
+      <stop offset="0%" style="stop-color:#00e0ff;stop-opacity:0.4" />
+      <stop offset="100%" style="stop-color:#00e0ff;stop-opacity:0" />
+    </radialGradient>
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffd700;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#ffed4e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d4af37;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="200" height="200" fill="#0f0f13" rx="20"/>
+  
+  <!-- Glow effect -->
+  <circle cx="100" cy="100" r="80" fill="url(#spoolGlow)"/>
+  
+  <!-- Outer spool flange (left) -->
+  <ellipse cx="55" cy="100" rx="10" ry="55" fill="url(#mainGradient)" opacity="0.9"/>
+  <ellipse cx="55" cy="100" rx="8" ry="53" fill="#1a1a20"/>
+  
+  <!-- Outer spool flange (right) -->
+  <ellipse cx="145" cy="100" rx="10" ry="55" fill="url(#mainGradient)" opacity="0.9"/>
+  <ellipse cx="145" cy="100" rx="8" ry="53" fill="#1a1a20"/>
+  
+  <!-- Main spool body -->
+  <ellipse cx="100" cy="100" rx="45" ry="45" fill="url(#mainGradient)" opacity="0.3"/>
+  <ellipse cx="100" cy="100" rx="45" ry="45" fill="none" stroke="url(#mainGradient)" stroke-width="3"/>
+  
+  <!-- Inner concentric rings for depth -->
+  <circle cx="100" cy="100" r="40" fill="none" stroke="url(#mainGradient)" stroke-width="1.5" opacity="0.5"/>
+  <circle cx="100" cy="100" r="35" fill="none" stroke="url(#mainGradient)" stroke-width="1.5" opacity="0.5"/>
+  
+  <!-- Center hub -->
+  <circle cx="100" cy="100" r="28" fill="#1a1a20"/>
+  <circle cx="100" cy="100" r="28" fill="none" stroke="url(#mainGradient)" stroke-width="2.5"/>
+  
+  <!-- Ornate keyhole design -->
+  <!-- Keyhole circle top -->
+  <circle cx="100" cy="92" r="8" fill="url(#goldGradient)"/>
+  <circle cx="100" cy="92" r="6" fill="#0f0f13"/>
+  
+  <!-- Keyhole shaft -->
+  <path d="M 96 99 L 104 99 L 106 118 L 94 118 Z" fill="url(#goldGradient)"/>
+  <path d="M 97 100 L 103 100 L 104.5 116 L 95.5 116 Z" fill="#0f0f13"/>
+  
+  <!-- Decorative key pattern around keyhole -->
+  <circle cx="88" cy="92" r="2" fill="#ffd700" opacity="0.6"/>
+  <circle cx="112" cy="92" r="2" fill="#ffd700" opacity="0.6"/>
+  <circle cx="100" cy="80" r="2" fill="#ffd700" opacity="0.6"/>
+  
+  <!-- Ornate lock mechanism details -->
+  <path d="M 85 100 L 87 102 L 85 104" fill="none" stroke="#ffd700" stroke-width="1.5" opacity="0.7"/>
+  <path d="M 115 100 L 113 102 L 115 104" fill="none" stroke="#ffd700" stroke-width="1.5" opacity="0.7"/>
+  
+  <!-- Mystical corner accents -->
+  <circle cx="100" cy="125" r="2.5" fill="#ffd700" opacity="0.7"/>
+  <path d="M 98 127 L 100 132 L 102 127" fill="#ffd700" opacity="0.5"/>
+  
+  <!-- Subtle geometric pattern in corners -->
+  <path d="M 40 40 L 50 40 L 40 50 Z" fill="url(#mainGradient)" opacity="0.2"/>
+  <path d="M 160 40 L 150 40 L 160 50 Z" fill="url(#mainGradient)" opacity="0.2"/>
+  <path d="M 40 160 L 50 160 L 40 150 Z" fill="url(#mainGradient)" opacity="0.2"/>
+  <path d="M 160 160 L 150 160 L 160 150 Z" fill="url(#mainGradient)" opacity="0.2"/>
+</svg>

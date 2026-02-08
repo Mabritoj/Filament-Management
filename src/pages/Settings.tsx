@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const STORAGE_KEY = 'filament-inventory-v1';
+const STORAGE_KEY = 'filacrypt-inventory-v1';
 
 export function Settings() {
     const navigate = useNavigate();
@@ -16,7 +16,7 @@ export function Settings() {
             const url = URL.createObjectURL(blob);
             const link = document.createElement('a');
             link.href = url;
-            link.download = `filament-inventory-${new Date().toISOString().split('T')[0]}.json`;
+            link.download = `filacrypt-backup-${new Date().toISOString().split('T')[0]}.json`;
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);

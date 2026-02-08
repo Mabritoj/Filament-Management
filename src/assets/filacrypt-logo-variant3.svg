@@ -1,0 +1,43 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="cyanPurple" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00e0ff;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#6d28d9;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#bd00ff;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="50" cy="50" r="48" fill="rgba(26, 26, 32, 0.9)"/>
+  
+  <!-- Octagonal crypt frame -->
+  <path d="M 50 8 L 70 18 L 82 38 L 82 62 L 70 82 L 50 92 L 30 82 L 18 62 L 18 38 L 30 18 Z" 
+        fill="none" stroke="url(#cyanPurple)" stroke-width="2.5" opacity="0.8"/>
+  
+  <!-- Top-down spool view -->
+  <circle cx="50" cy="50" r="28" fill="url(#cyanPurple)" opacity="0.2"/>
+  <circle cx="50" cy="50" r="28" fill="none" stroke="url(#cyanPurple)" stroke-width="2.5"/>
+  
+  <!-- Filament spiral pattern -->
+  <circle cx="50" cy="50" r="24" fill="none" stroke="#00e0ff" stroke-width="1" opacity="0.4"/>
+  <circle cx="50" cy="50" r="20" fill="none" stroke="#00e0ff" stroke-width="1" opacity="0.4"/>
+  <circle cx="50" cy="50" r="16" fill="none" stroke="#00e0ff" stroke-width="1" opacity="0.4"/>
+  
+  <!-- Center hub -->
+  <circle cx="50" cy="50" r="12" fill="#1a1a20"/>
+  <circle cx="50" cy="50" r="12" fill="none" stroke="url(#cyanPurple)" stroke-width="2"/>
+  
+  <!-- Keyhole in center -->
+  <circle cx="50" cy="47" r="4" fill="#ffd700"/>
+  <path d="M 48 49 L 52 49 L 52 54 L 48 54 Z" fill="#ffd700"/>
+  
+  <!-- Octagon corner accents -->
+  <circle cx="50" cy="8" r="2.5" fill="#00e0ff"/>
+  <circle cx="70" cy="18" r="2.5" fill="#6d28d9"/>
+  <circle cx="82" cy="38" r="2.5" fill="#bd00ff"/>
+  <circle cx="82" cy="62" r="2.5" fill="#00e0ff"/>
+  <circle cx="70" cy="82" r="2.5" fill="#6d28d9"/>
+  <circle cx="50" cy="92" r="2.5" fill="#bd00ff"/>
+  <circle cx="30" cy="82" r="2.5" fill="#00e0ff"/>
+  <circle cx="18" cy="62" r="2.5" fill="#6d28d9"/>
+</svg>

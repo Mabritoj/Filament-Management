@@ -13,6 +13,8 @@
   --secondary: #ff0055;
   --accent-green: #00ff9d;
   --accent-purple: #bd00ff;
+  --accent-gold: #ffd700;
+  --accent-gold-glow: rgba(255, 215, 0, 0.3);
 
   /* Text */
   --text-main: #ffffff;
@@ -22,9 +24,14 @@
   /* Borders */
   --border-subtle: rgba(255, 255, 255, 0.08);
   --border-focus: rgba(255, 255, 255, 0.2);
+  --border-gold: rgba(255, 215, 0, 0.25);
 
   /* Progress Bar */
   --progress-bg: rgba(255, 255, 255, 0.1);
+
+  /* Vault theme */
+  --vault-glow: rgba(0, 224, 255, 0.15);
+  --treasure-shine: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(0, 224, 255, 0.1));
 }
 
 :root[data-theme="light"] {
@@ -36,29 +43,29 @@
 
   /* Accents - deeper, more saturated for better contrast */
   --primary: #0e7490;
-  /* Cyan 700 - deeper for distinction */
   --primary-glow: rgba(14, 116, 144, 0.12);
   --secondary: #be123c;
-  /* Rose 700 - richer red */
   --accent-green: #047857;
-  /* Emerald 700 - deeper green */
   --accent-purple: #6d28d9;
-  /* Violet 700 - richer purple */
+  --accent-gold: #d4af37;
+  --accent-gold-glow: rgba(212, 175, 55, 0.2);
 
   /* Text - warmer, softer contrast */
   --text-main: #1f2937;
-  /* Gray 800 - slightly warmer than slate */
   --text-muted: #6b7280;
-  /* Gray 500 - balanced mid-tone */
   --text-dim: #9ca3af;
-  /* Gray 400 - softer light text */
 
   /* Borders - warmer with better visibility */
   --border-subtle: rgba(156, 163, 175, 0.25);
   --border-focus: rgba(107, 114, 128, 0.4);
+  --border-gold: rgba(212, 175, 55, 0.3);
 
   /* Progress Bar */
   --progress-bg: rgba(156, 163, 175, 0.3);
+
+  /* Vault theme */
+  --vault-glow: rgba(14, 116, 144, 0.1);
+  --treasure-shine: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(14, 116, 144, 0.08));
 }
 
 :root {
@@ -88,6 +95,10 @@
 body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   background-color: var(--bg-app);
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 50px, var(--border-subtle) 50px, var(--border-subtle) 51px),
+    repeating-linear-gradient(90deg, transparent, transparent 50px, var(--border-subtle) 50px, var(--border-subtle) 51px);
+  background-size: 50px 50px;
   color: var(--text-main);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
@@ -683,7 +694,7 @@ input[type="number"] {
    CARD COMPONENTS
    ====================== */
 
-/* Filament Card */
+/* Filament Card - Vault Treasure Theme */
 .filament-card {
   border-radius: var(--radius-md);
   padding: var(--space-md);
@@ -692,20 +703,42 @@ input[type="number"] {
   gap: var(--space-sm);
   position: relative;
   overflow: hidden;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
   cursor: pointer;
   height: 220px;
   min-height: 220px;
-  width: 100%;
-  max-width: 700px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-card);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Vault glow effect on cards */
+.filament-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--treasure-shine);
+  opacity: 0;
+  transition: opacity 0.3s;
 }
 
 .filament-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 224, 255, 0.2);
+  box-shadow:
+    0 8px 24px var(--vault-glow),
+    0 0 0 1px var(--border-gold),
+    inset 0 1px 0 var(--border-gold);
+  border-color: var(--border-gold);
 }
 
-/* Add Filament Card */
+.filament-card:hover::before {
+  opacity: 1;
+}
+
+/* Add Filament Card - Vault Door Theme */
 .add-filament-card {
   border: 2px dashed var(--border-focus);
   border-radius: var(--radius-md);
@@ -760,8 +793,14 @@ input[type="number"] {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(550px, 1fr));
   gap: var(--space-lg);
-  justify-content: center;
   width: 100%;
+  align-items: start;
+}
+
+/* Ensure both card types fill grid cells equally */
+.inventory-grid>* {
+  width: 100%;
+  max-width: none;
 }
 
 /* Mobile responsive breakpoint */
@@ -778,6 +817,69 @@ input[type="number"] {
   }
 }
 
+
 .mb-xs {
   margin-bottom: 4px;
+}
+
+/* ======================
+   VAULT THEME ENHANCEMENTS
+   ====================== */
+
+/* Loading Animation - Rotating Lock */
+@keyframes rotateLock {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(-10deg);
+  }
+
+  50% {
+    transform: rotate(10deg);
+  }
+
+  75% {
+    transform: rotate(-10deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.vault-loading {
+  animation: rotateLock 2s ease-in-out infinite;
+}
+
+/* Treasure shine animation */
+@keyframes treasureShine {
+  0% {
+    background-position: -200% center;
+  }
+
+  100% {
+    background-position: 200% center;
+  }
+}
+
+/* Section headers with vault styling */
+.vault-section-header {
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-bottom: var(--space-md);
+}
+
+/* Gold accent divider */
+.vault-divider {
+  height: 1px;
+  background: linear-gradient(90deg,
+      transparent,
+      var(--border-gold),
+      transparent);
+  margin: var(--space-lg) 0;
 }

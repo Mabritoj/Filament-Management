@@ -52,27 +52,20 @@ export function Navbar() {
                 style={{
                     display: 'flex',
                     alignItems: 'center',
-                    gap: 'var(--space-lg)',
+                    gap: 'var(--space-md)',
                     cursor: 'pointer'
                 }}
                 onClick={() => navigate('/')}
             >
-                <div style={{
-                    width: '40px',
-                    height: '40px',
-                    background: 'linear-gradient(135deg, var(--primary), var(--accent-purple))',
-                    borderRadius: '8px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontWeight: 'bold',
-                    fontSize: '1.2rem',
-                    color: '#000',
-                    boxShadow: '0 0 15px var(--primary-glow)'
-                }}>
-                    F
-                </div>
-                <span style={{ fontSize: '1.1rem', fontWeight: '600' }}>Filament Manager</span>
+                <img
+                    src="/src/assets/filacrypt-logo.svg"
+                    alt="Filacrypt Logo"
+                    style={{
+                        width: '40px',
+                        height: '40px'
+                    }}
+                />
+                <span style={{ fontSize: '1.1rem', fontWeight: '600' }}>Filacrypt</span>
             </div>
 
             {/* Right: Theme Toggle & Profile Icon */}

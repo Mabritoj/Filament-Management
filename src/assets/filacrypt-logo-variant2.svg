@@ -1,0 +1,41 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#bd00ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00e0ff;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="glowGrad">
+      <stop offset="0%" style="stop-color:#00e0ff;stop-opacity:0.6" />
+      <stop offset="100%" style="stop-color:#00e0ff;stop-opacity:0" />
+    </radialGradient>
+  </defs>
+  
+  <!-- Glow effect -->
+  <circle cx="50" cy="50" r="45" fill="url(#glowGrad)"/>
+  
+  <!-- Outer shield shape -->
+  <path d="M 50 5 L 80 20 L 85 50 L 80 80 L 50 95 L 20 80 L 15 50 L 20 20 Z" 
+        fill="rgba(30, 30, 35, 0.8)" stroke="url(#grad1)" stroke-width="2.5"/>
+  
+  <!-- Filament spool - front view -->
+  <circle cx="50" cy="50" r="25" fill="url(#grad1)" opacity="0.3"/>
+  <circle cx="50" cy="50" r="22" fill="none" stroke="url(#grad1)" stroke-width="3"/>
+  
+  <!-- Spool center hole -->
+  <circle cx="50" cy="50" r="10" fill="#1a1a20"/>
+  <circle cx="50" cy="50" r="10" fill="none" stroke="#00e0ff" stroke-width="2"/>
+  
+  <!-- Spool edges (left and right flanges) -->
+  <ellipse cx="26" cy="50" rx="3" ry="18" fill="url(#grad1)"/>
+  <ellipse cx="74" cy="50" rx="3" ry="18" fill="url(#grad1)"/>
+  
+  <!-- Central lock symbol -->
+  <rect x="48" y="42" width="4" height="8" rx="2" fill="#ffd700"/>
+  <circle cx="50" cy="40" r="4" fill="none" stroke="#ffd700" stroke-width="2"/>
+  
+  <!-- Corner decorative elements -->
+  <path d="M 50 10 L 52 15 L 48 15 Z" fill="#ffd700" opacity="0.7"/>
+  <path d="M 75 25 L 80 27 L 73 32 Z" fill="#ffd700" opacity="0.7"/>
+  <path d="M 75 75 L 80 73 L 73 68 Z" fill="#ffd700" opacity="0.7"/>
+  <path d="M 50 90 L 52 85 L 48 85 Z" fill="#ffd700" opacity="0.7"/>
+</svg>
