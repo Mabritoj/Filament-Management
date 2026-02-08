@@ -190,33 +190,35 @@ export function FilamentForm({ isOpen, onClose, onSubmit, initialData = null }: 
                 }}
                 onClick={e => e.stopPropagation()}
             >
+                {/* Header - Sticky */}
+                <h2 style={{
+                    margin: 0,
+                    padding: 'var(--space-lg)',
+                    paddingBottom: 'var(--space-md)',
+                    backgroundColor: 'var(--bg-card)',
+                    backdropFilter: 'blur(12px)',
+                    borderBottom: '1px solid var(--border-subtle)',
+                }}>{initialData ? 'Edit Roll' : 'Add New Roll'}</h2>
 
-
+                {/* Scrollable Form Content */}
                 <form
                     onSubmit={handleSubmit}
                     style={{
                         display: 'flex',
                         flexDirection: 'column',
-                        gap: 'var(--space-md)',
+                        height: '100%',
+                        overflow: 'hidden'
+                    }}
+                >
+                    <div style={{
+                        padding: 'var(--space-lg)',
+                        paddingTop: 'var(--space-md)',
+                        display: 'flex',
+                        flexDirection: 'column',
                         gap: 'var(--space-md)',
                         overflowY: 'auto',
                         flex: 1
-                    }}
-                >
-                    <h2 style={{
-                        marginBottom: 'var(--space-md)',
-                        padding: 'var(--space-lg)',
-                        paddingBottom: 'var(--space-sm)',
-                        position: 'sticky',
-                        top: 0,
-                        backgroundColor: '#1e1e23', // Matches --bg-card roughly, need to capture backdrop
-                        backdropFilter: 'blur(12px)',
-                        zIndex: 10,
-                        borderBottom: '1px solid var(--border-subtle)',
-                        margin: 0
-                    }}>{initialData ? 'Edit Roll' : 'Add New Roll'}</h2>
-
-                    <div style={{ padding: '0 var(--space-lg)', display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
+                    }}>
                         {/* Brand & Type */}
                         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-md)' }}>
                             <label>
@@ -611,10 +613,18 @@ export function FilamentForm({ isOpen, onClose, onSubmit, initialData = null }: 
                                 </div>
                             </div>
                         )}
-
                     </div>
 
-                    <div style={{ display: 'flex', gap: 'var(--space-md)', marginTop: 'var(--space-md)', padding: '0 var(--space-lg)', paddingBottom: 'var(--space-lg)' }}>
+                    {/* Sticky Footer Buttons */}
+                    <div style={{
+                        display: 'flex',
+                        gap: 'var(--space-md)',
+                        padding: 'var(--space-lg)',
+                        paddingTop: 'var(--space-md)',
+                        borderTop: '1px solid var(--border-subtle)',
+                        backgroundColor: 'var(--bg-card)',
+                        backdropFilter: 'blur(12px)'
+                    }}>
                         <button
                             type="button"
                             onClick={onClose}
