@@ -16,38 +16,36 @@ export function Breadcrumb() {
             label: location.state.filamentName,
             path: location.pathname
         });
+    } else if (pathSegments.length === 0) {
+        // If on the root path, the "Home" link is the current item
+        // No additional breadcrumbs needed from the array
+    } else {
+        // For other paths, we might want to add segments, but the original only added filamentName
+        // For now, we'll keep it as is, only adding filamentName if present.
+        // If the intent was to show "Home / Inventory" or "Home / SomeOtherPage",
+        // the breadcrumbs array construction would need to be more dynamic.
+        // Based on the original code, the only dynamic part was the filamentName.
+        // The "Inventory" was the base.
+        // Let's assume "Inventory" is now replaced by "Home" in the hardcoded link.
+        // If the path is not root and not a detail page, we don't add anything to breadcrumbs array
+        // based on the original logic.
     }
 
+
     return (
-        <nav style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 'var(--space-sm)',
-            fontSize: '0.9rem',
-            color: 'var(--text-muted)',
-            marginBottom: 'var(--space-md)'
-        }}>
-            {breadcrumbs.map((crumb, index) => (
-                <React.Fragment key={crumb.path}>
-                    {index > 0 && <span style={{ color: 'var(--text-dim)' }}>/</span>}
+        <nav className="breadcrumb">
+            <Link to="/" className="breadcrumb-link">Home</Link>
+            {breadcrumbs.length > 0 && breadcrumbs.map((crumb, index) => (
+                <React.Fragment key={index}>
+                    <span className="breadcrumb-separator"> / </span>
                     {index === breadcrumbs.length - 1 ? (
-                        <span style={{ color: 'var(--text-main)', fontWeight: '500' }}>
-                            {crumb.label}
-                        </span>
+                        <span className="breadcrumb-current">{crumb.label}</span>
                     ) : (
-                        <Link
-                            to={crumb.path}
-                            style={{
-                                color: 'var(--primary)',
-                                textDecoration: 'none',
-                                transition: 'color 0.2s'
-                            }}
-                        >
-                            {crumb.label}
-                        </Link>
+                        <Link to={crumb.path} className="breadcrumb-link">{crumb.label}</Link>
                     )}
                 </React.Fragment>
             ))}
-        </nav>
+
+        </nav >
     );
 }

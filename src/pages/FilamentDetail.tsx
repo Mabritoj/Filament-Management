@@ -3,6 +3,11 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useFilaments } from '../context/FilamentContext';
 import { Breadcrumb } from '../components/Breadcrumb';
 import { ConfirmationModal } from '../components/ConfirmationModal';
+import {
+    IconBrand, IconPalette, IconDna, IconDiameter, IconCalendar,
+    IconThermometer, IconScale, IconTag, IconLink, IconNote,
+    IconGlobe, IconBarcode
+} from '../components/Icons';
 
 export function FilamentDetail() {
     const { id } = useParams();
@@ -95,11 +100,11 @@ export function FilamentDetail() {
                         {/* Key Specs Grid */}
                         <div className="flex-1 min-w-300">
                             <div className="stats-grid mb-md">
-                                <QuickStat icon="🏷️" label="Brand" value={filament.brand} />
-                                <QuickStat icon="🎨" label="Color" value={filament.colorName || 'N/A'} />
-                                <QuickStat icon="🧬" label="Material" value={filament.type} />
-                                <QuickStat icon="📏" label="Diameter" value={`${filament.diameter || 1.75}mm`} />
-                                <QuickStat icon="📅" label="Added" value={filament.createdAt ? new Date(filament.createdAt).toLocaleDateString() : 'N/A'} />
+                                <QuickStat icon={<IconBrand size={22} color="var(--text-muted)" />} label="Brand" value={filament.brand} />
+                                <QuickStat icon={<IconPalette size={22} color="var(--text-muted)" />} label="Color" value={filament.colorName || 'N/A'} />
+                                <QuickStat icon={<IconDna size={22} color="var(--text-muted)" />} label="Material" value={filament.type} />
+                                <QuickStat icon={<IconDiameter size={22} color="var(--text-muted)" />} label="Diameter" value={`${filament.diameter || 1.75}mm`} />
+                                <QuickStat icon={<IconCalendar size={22} color="var(--text-muted)" />} label="Added" value={filament.createdAt ? new Date(filament.createdAt).toLocaleDateString() : 'N/A'} />
                             </div>
                         </div>
                     </div>
@@ -121,9 +126,7 @@ export function FilamentDetail() {
                             <div
                                 className={`progress-fill ${percentage > 50 ? 'progress-fill-high' : 'progress-fill-low'}`}
                                 style={{ width: `${percentage}%` }}
-                            >
-                                <div className="progress-shimmer" />
-                            </div>
+                            />
                         </div>
                         <div className="text-right mt-xs text-base text-dim text-semibold">
                             {Math.round(percentage)}% remaining
@@ -135,7 +138,7 @@ export function FilamentDetail() {
                 <div className="grid-auto-fit mb-lg">
                     {/* Temperature Card */}
                     {(filament.nozzleTemp || filament.bedTemp || filament.dryingTemp) && (
-                        <InfoCard title="🌡️ Temperature Settings" icon="🌡️">
+                        <InfoCard title="Temperature Settings" icon={<IconThermometer size={24} color="var(--secondary)" />}>
                             <div className="info-grid">
                                 {filament.nozzleTemp && <PropertyItem label="Nozzle Temp" value={filament.nozzleTemp.includes('-') ? `${filament.nozzleTemp}°C` : `${filament.nozzleTemp}°C`} />}
                                 {filament.bedTemp && <PropertyItem label="Bed Temp" value={`${filament.bedTemp}°C`} />}
@@ -147,7 +150,7 @@ export function FilamentDetail() {
 
                     {/* Weight Details Card */}
                     {filament.spoolWeight && (
-                        <InfoCard title="⚖️ Weight Breakdown" icon="⚖️">
+                        <InfoCard title="Weight Breakdown" icon={<IconScale size={24} color="var(--accent-gold)" />}>
                             <div className="info-grid">
                                 <PropertyItem label="Total Weight" value={`${filament.weightTotal}g`} />
                                 <PropertyItem label="Spool Weight" value={`${filament.spoolWeight}g`} />
@@ -158,11 +161,15 @@ export function FilamentDetail() {
 
                     {/* Material Properties Card */}
                     {(filament.density || filament.materialId || filament.countryOfOrigin) && (
-                        <InfoCard title="🧪 Material Properties" icon="🧪">
+                        <InfoCard title="Material Properties" icon={<IconDna size={24} color="var(--primary)" />}>
                             <div className="info-grid">
                                 {filament.density && <PropertyItem label="Density" value={`${filament.density} g/cm³`} />}
-                                {filament.materialId && <PropertyItem label="Material ID (EAN/UPC)" value={filament.materialId} />}
-                                {filament.countryOfOrigin && <PropertyItem label="Country of Origin" value={filament.countryOfOrigin.toUpperCase()} />}
+                                {filament.materialId && <PropertyItem label="Material ID (EAN/UPC)" value={<div className="flex items-center gap-xs"><IconBarcode size={14} /> {filament.materialId}</div>} />}
+                                {filament.countryOfOrigin && <PropertyItem label="Country of Origin" value={
+                                    <div className="flex items-center gap-xs">
+                                        <IconGlobe size={14} /> {filament.countryOfOrigin.toUpperCase()}
+                                    </div>
+                                } />}
                             </div>
                         </InfoCard>
                     )}
@@ -170,9 +177,9 @@ export function FilamentDetail() {
 
                 {/* Tags Section */}
                 {filament.tags && filament.tags.length > 0 && (
-                    <div className="glass-panel p-lg mb-lg">
-                        <h3 className="section-heading mb-md">
-                            🏷️ Material Tags
+                    <div className="glass-panel p-lg mb-lg" style={{ borderRadius: 'var(--radius-lg)' }}>
+                        <h3 className="section-heading mb-md flex items-center gap-sm">
+                            <IconTag size={20} /> Material Tags
                         </h3>
                         <div className="flex gap-sm flex-wrap">
                             {filament.tags.map((tag, idx) => (
@@ -186,9 +193,9 @@ export function FilamentDetail() {
 
                 {/* Product Link Card */}
                 {filament.manufacturerUrl && (
-                    <div className="glass-panel p-lg mb-lg">
-                        <h3 className="section-heading mb-md">
-                            🔗 Product Information
+                    <div className="glass-panel p-lg mb-lg" style={{ borderRadius: 'var(--radius-lg)' }}>
+                        <h3 className="section-heading mb-md flex items-center gap-sm">
+                            <IconLink size={20} /> Product Information
                         </h3>
                         <a
                             href={filament.manufacturerUrl}
@@ -196,7 +203,7 @@ export function FilamentDetail() {
                             rel="noopener noreferrer"
                             className="link-card"
                         >
-                            <span className="text-2xl">🔗</span>
+                            <span className="text-2xl"><IconLink size={20} /></span>
                             <span>Manufacturer Product Page</span>
                             <span style={{ fontSize: '0.8rem', opacity: 0.7 }}>↗</span>
                         </a>
@@ -205,9 +212,9 @@ export function FilamentDetail() {
 
                 {/* Notes Section */}
                 {filament.notes && (
-                    <div className="glass-panel p-lg">
-                        <h3 className="section-heading mb-md">
-                            📝 Notes
+                    <div className="glass-panel p-lg" style={{ borderRadius: 'var(--radius-lg)' }}>
+                        <h3 className="section-heading mb-md flex items-center gap-sm">
+                            <IconNote size={20} /> Notes
                         </h3>
                         <p className="text-main text-lg whitespace-pre-wrap" style={{ lineHeight: '1.7', margin: 0 }}>
                             {filament.notes}
@@ -227,7 +234,7 @@ export function FilamentDetail() {
     );
 }
 
-function QuickStat({ icon, label, value }: { icon: string; label: string; value: string }) {
+function QuickStat({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
     return (
         <div className="stat-card">
             <span className="quick-stat-icon">{icon}</span>
@@ -243,19 +250,19 @@ function QuickStat({ icon, label, value }: { icon: string; label: string; value:
     );
 }
 
-function InfoCard({ title, icon, children }: { title: string; icon: string; children: React.ReactNode }) {
+function InfoCard({ title, icon, children }: { title: string; icon: React.ReactNode; children: React.ReactNode }) {
     return (
         <div className="glass-panel info-card">
-            <h3 className="section-heading mb-md flex items-center gap-xs">
-                <span className="text-2xl">{icon}</span>
-                {title.replace(icon, '').trim()}
+            <h3 className="section-heading mb-md flex items-center gap-sm">
+                <span style={{ width: 32, height: 32, background: 'rgba(255,255,255,0.05)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{icon}</span>
+                {title}
             </h3>
             {children}
         </div>
     );
 }
 
-function PropertyItem({ label, value }: { label: string; value: string }) {
+function PropertyItem({ label, value }: { label: string; value: React.ReactNode }) {
     return (
         <div>
             <div className="property-item-label">

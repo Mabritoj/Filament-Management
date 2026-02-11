@@ -58,12 +58,14 @@ export function InventoryPage() {
         <>
             <Breadcrumb />
 
-            <h1 className="heading-xl mb-md" style={{
+            <h1 className="heading-xl mb-lg" style={{
                 letterSpacing: '0.5px',
                 textTransform: 'uppercase',
                 fontSize: '1.5rem',
                 fontWeight: '600',
-                color: 'var(--text-main)'
+                color: 'var(--text-main)',
+                borderBottom: '1px solid var(--border-subtle)',
+                paddingBottom: '1rem'
             }}>
                 Your Filament Vault
             </h1>
@@ -95,10 +97,7 @@ export function InventoryPage() {
                     <span style={{
                         fontSize: '1.75rem',
                         fontWeight: 'bold',
-                        background: 'linear-gradient(135deg, var(--accent-gold), var(--primary))',
-                        WebkitBackgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent',
-                        backgroundClip: 'text'
+                        color: 'var(--text-main)'
                     }}>
                         {stats.totalRolls}
                     </span>
@@ -119,10 +118,7 @@ export function InventoryPage() {
                     <span style={{
                         fontSize: '1.75rem',
                         fontWeight: 'bold',
-                        background: 'linear-gradient(135deg, var(--primary), var(--accent-purple))',
-                        WebkitBackgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent',
-                        backgroundClip: 'text'
+                        color: 'var(--text-main)'
                     }}>
                         {(stats.totalWeight / 1000).toFixed(1)} kg
                     </span>

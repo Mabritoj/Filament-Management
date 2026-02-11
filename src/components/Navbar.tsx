@@ -31,62 +31,26 @@ export function Navbar() {
     };
 
     return (
-        <nav style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            height: '64px',
-            background: 'var(--bg-panel)',
-            backdropFilter: 'blur(12px)',
-            borderBottom: '1px solid var(--border-subtle)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            padding: '0 var(--space-lg)',
-            zIndex: 100,
-            boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
-        }}>
+        <nav className="navbar">
             {/* Left: Logo */}
             <div
-                style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 'var(--space-md)',
-                    cursor: 'pointer'
-                }}
+                className="navbar-logo"
                 onClick={() => navigate('/')}
             >
                 <img
                     src="/src/assets/filacrypt-logo.svg"
                     alt="Filacrypt Logo"
-                    style={{
-                        width: '40px',
-                        height: '40px'
-                    }}
+                    className="navbar-logo-img"
                 />
-                <span style={{ fontSize: '1.1rem', fontWeight: '600' }}>Filacrypt</span>
+                <span className="navbar-logo-text">Filacrypt</span>
             </div>
 
             {/* Right: Theme Toggle & Profile Icon */}
-            <div style={{ display: 'flex', gap: 'var(--space-md)', alignItems: 'center' }}>
+            <div className="navbar-actions">
                 {/* Theme Toggle */}
                 <button
                     onClick={toggleTheme}
-                    style={{
-                        width: '36px',
-                        height: '36px',
-                        borderRadius: '50%',
-                        background: 'var(--bg-card)',
-                        border: '2px solid var(--border-focus)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        cursor: 'pointer',
-                        transition: 'border-color 0.2s'
-                    }}
-                    onMouseEnter={(e) => e.currentTarget.style.borderColor = 'var(--primary)'}
-                    onMouseLeave={(e) => e.currentTarget.style.borderColor = 'var(--border-focus)'}
+                    className="icon-btn"
                     title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
                 >
                     {theme === 'dark' ? (
@@ -111,21 +75,8 @@ export function Navbar() {
                 {/* Profile Icon with Dropdown */}
                 <div ref={menuRef} style={{ position: 'relative' }}>
                     <div
-                        style={{
-                            width: '36px',
-                            height: '36px',
-                            borderRadius: '50%',
-                            background: 'var(--bg-card)',
-                            border: '2px solid var(--border-focus)',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            cursor: 'pointer',
-                            transition: 'border-color 0.2s'
-                        }}
+                        className="icon-btn"
                         onClick={() => setShowProfileMenu(!showProfileMenu)}
-                        onMouseEnter={(e) => e.currentTarget.style.borderColor = 'var(--primary)'}
-                        onMouseLeave={(e) => e.currentTarget.style.borderColor = 'var(--border-focus)'}
                     >
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                             <circle cx="12" cy="8" r="4" />
@@ -135,35 +86,10 @@ export function Navbar() {
 
                     {/* Dropdown Menu */}
                     {showProfileMenu && (
-                        <div style={{
-                            position: 'absolute',
-                            top: 'calc(100% + 8px)',
-                            right: 0,
-                            background: 'var(--bg-panel)',
-                            border: '1px solid var(--border-subtle)',
-                            borderRadius: 'var(--radius-md)',
-                            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2)',
-                            minWidth: '180px',
-                            overflow: 'hidden',
-                            zIndex: 1000
-                        }}>
+                        <div className="dropdown-menu">
                             <button
                                 onClick={handleSettingsClick}
-                                style={{
-                                    width: '100%',
-                                    padding: 'var(--space-md)',
-                                    background: 'transparent',
-                                    border: 'none',
-                                    color: 'var(--text-main)',
-                                    textAlign: 'left',
-                                    cursor: 'pointer',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    gap: 'var(--space-sm)',
-                                    transition: 'background 0.2s'
-                                }}
-                                onMouseEnter={(e) => e.currentTarget.style.background = 'var(--bg-card)'}
-                                onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
+                                className="dropdown-item"
                             >
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                     <circle cx="12" cy="12" r="3" />

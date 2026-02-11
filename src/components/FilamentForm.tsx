@@ -167,92 +167,41 @@ export function FilamentForm({ isOpen, onClose, onSubmit, initialData = null }: 
     };
 
     return (
-        <div style={{
-            position: 'fixed',
-            top: 0, left: 0, right: 0, bottom: 0,
-            backgroundColor: 'rgba(0,0,0,0.7)',
-            backdropFilter: 'blur(5px)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            zIndex: 1000
-        }}>
+        <div className="modal-overlay">
             <div
-                className="glass-panel"
-                style={{
-                    width: '750px',
-                    maxWidth: '90%',
-                    maxHeight: '90vh',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    borderRadius: 'var(--radius-lg)',
-                    overflow: 'hidden',
-                }}
+                className="modal-container glass-panel"
                 onClick={e => e.stopPropagation()}
             >
                 {/* Header - Sticky */}
-                <h2 style={{
-                    margin: 0,
-                    padding: 'var(--space-lg)',
-                    paddingBottom: 'var(--space-md)',
-                    backgroundColor: 'var(--bg-card)',
-                    backdropFilter: 'blur(12px)',
-                    borderBottom: '1px solid var(--border-subtle)',
-                }}>{initialData ? 'Edit Roll' : 'Add New Roll'}</h2>
+                <h2 className="modal-header">{initialData ? 'Edit Roll' : 'Add New Roll'}</h2>
 
                 {/* Scrollable Form Content */}
                 <form
                     onSubmit={handleSubmit}
-                    style={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        height: '100%',
-                        overflow: 'hidden'
-                    }}
+                    className="flex flex-col"
+                    style={{ height: '100%', overflow: 'hidden' }}
                 >
-                    <div style={{
-                        padding: 'var(--space-lg)',
-                        paddingTop: 'var(--space-md)',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        gap: 'var(--space-md)',
-                        overflowY: 'auto',
-                        flex: 1
-                    }}>
+                    <div className="modal-scroll-content">
                         {/* Brand & Type */}
-                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-md)' }}>
+                        <div className="grid-2-col">
                             <label>
-                                <div style={{ marginBottom: '4px', fontSize: '0.9rem', color: 'var(--text-muted)' }}>Brand</div>
+                                <div className="form-label">Brand</div>
                                 <input
                                     required
                                     name="brand"
                                     value={formData.brand}
                                     onChange={handleChange}
-                                    style={{
-                                        width: '100%',
-                                        padding: '8px',
-                                        borderRadius: 'var(--radius-sm)',
-                                        border: '1px solid var(--border-focus)',
-                                        background: 'rgba(0,0,0,0.3)',
-                                        color: 'white'
-                                    }}
+                                    className="form-input"
                                     placeholder="e.g. Prusament"
                                 />
                             </label>
                             <label>
-                                <div style={{ marginBottom: '4px', fontSize: '0.9rem', color: 'var(--text-muted)' }}>Material</div>
+                                <div className="form-label">Material</div>
                                 <select
                                     name="type"
                                     value={formData.type}
                                     onChange={handleChange}
-                                    style={{
-                                        width: '100%',
-                                        padding: '8px',
-                                        borderRadius: 'var(--radius-sm)',
-                                        border: '1px solid var(--border-focus)',
-                                        background: 'rgba(0,0,0,0.3)',
-                                        color: 'white'
-                                    }}
+                                    className="form-select"
                                 >
                                     {MATERIAL_TYPES.map(t => <option key={t} value={t}>{t}</option>)}
                                 </select>
@@ -261,34 +210,27 @@ export function FilamentForm({ isOpen, onClose, onSubmit, initialData = null }: 
 
                         {/* Filament Name */}
                         <label>
-                            <div style={{ marginBottom: '4px', fontSize: '0.9rem', color: 'var(--text-muted)' }}>Filament Name</div>
+                            <div className="form-label">Filament Name</div>
                             <input
                                 required
                                 name="name"
                                 value={formData.name}
                                 onChange={handleChange}
-                                style={{
-                                    width: '100%',
-                                    padding: '8px',
-                                    borderRadius: 'var(--radius-sm)',
-                                    border: '1px solid var(--border-focus)',
-                                    background: 'rgba(0,0,0,0.3)',
-                                    color: 'white'
-                                }}
+                                className="form-input"
                                 placeholder="e.g. Galaxy Black"
                             />
                         </label>
 
                         {/* Color Section */}
                         <div>
-                            <div style={{ marginBottom: '8px', fontSize: '0.9rem', color: 'var(--text-muted)' }}>Color</div>
-                            <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
+                            <div className="form-label" style={{ marginBottom: '8px' }}>Color</div>
+                            <div className="flex gap-sm" style={{ marginBottom: '8px' }}>
                                 <input
                                     type="color"
                                     name="colorHex"
                                     value={formData.colorHex}
                                     onChange={handleChange}
-                                    style={{ border: 'none', width: '40px', height: '40px', borderRadius: '4px', cursor: 'pointer' }}
+                                    className="color-input"
                                 />
                                 <input
                                     required
@@ -296,28 +238,18 @@ export function FilamentForm({ isOpen, onClose, onSubmit, initialData = null }: 
                                     value={formData.colorName}
                                     onChange={handleChange}
                                     placeholder="Color Name"
-                                    style={{
-                                        flex: 1,
-                                        padding: '8px',
-                                        borderRadius: 'var(--radius-sm)',
-                                        border: '1px solid var(--border-focus)',
-                                        background: 'rgba(0,0,0,0.3)',
-                                        color: 'white'
-                                    }}
+                                    className="form-input"
+                                    style={{ flex: 1 }}
                                 />
                             </div>
-                            <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
+                            <div className="flex gap-sm flex-wrap">
                                 {PRESET_COLORS.map(c => (
                                     <button
                                         key={c.name}
                                         type="button"
                                         onClick={() => handleColorPreset(c)}
-                                        style={{
-                                            width: '24px', height: '24px',
-                                            borderRadius: '50%',
-                                            backgroundColor: c.hex,
-                                            border: formData.colorHex === c.hex ? '2px solid white' : '1px solid grey'
-                                        }}
+                                        className={`color-preset-btn ${formData.colorHex === c.hex ? 'selected' : ''}`}
+                                        style={{ backgroundColor: c.hex }}
                                         title={c.name}
                                     />
                                 ))}
@@ -325,9 +257,9 @@ export function FilamentForm({ isOpen, onClose, onSubmit, initialData = null }: 
                         </div>
 
                         {/* Weights */}
-                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-md)' }}>
+                        <div className="grid-2-col">
                             <label>
-                                <div style={{ marginBottom: '4px', fontSize: '0.9rem', color: 'var(--text-muted)' }}>Remaining (g)</div>
+                                <div className="form-label">Remaining (g)</div>
                                 <input
                                     required
                                     type="number"
@@ -336,11 +268,11 @@ export function FilamentForm({ isOpen, onClose, onSubmit, initialData = null }: 
                                     onChange={handleChange}
                                     min="0"
                                     max={formData.weightTotal}
-                                    style={{ width: '100%', padding: '8px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-focus)', background: 'rgba(0,0,0,0.3)', color: 'white' }}
+                                    className="form-input"
                                 />
                             </label>
                             <label>
-                                <div style={{ marginBottom: '4px', fontSize: '0.9rem', color: 'var(--text-muted)' }}>Total Weight (g)</div>
+                                <div className="form-label">Total Weight (g)</div>
                                 <input
                                     required
                                     type="number"
@@ -348,7 +280,7 @@ export function FilamentForm({ isOpen, onClose, onSubmit, initialData = null }: 
                                     value={formData.weightTotal}
                                     onChange={handleChange}
                                     min="1"
-                                    style={{ width: '100%', padding: '8px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-focus)', background: 'rgba(0,0,0,0.3)', color: 'white' }}
+                                    className="form-input"
                                 />
                             </label>
                         </div>
@@ -357,81 +289,61 @@ export function FilamentForm({ isOpen, onClose, onSubmit, initialData = null }: 
                         <button
                             type="button"
                             onClick={() => setShowAdvanced(!showAdvanced)}
-                            style={{
-                                width: '100%',
-                                padding: '10px',
-                                background: 'rgba(255,255,255,0.05)',
-                                border: '1px solid var(--border-focus)',
-                                borderRadius: 'var(--radius-sm)',
-                                color: 'var(--text-muted)',
-                                fontSize: '0.9rem',
-                                cursor: 'pointer',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                gap: '8px',
-                                marginTop: 'var(--space-sm)'
-                            }}
+                            className="btn-toggle"
                         >
                             {showAdvanced ? '▼' : '▶'} Advanced Properties (Optional)
                         </button>
 
                         {/* Advanced Fields Section */}
                         {showAdvanced && (
-                            <div style={{
-                                display: 'flex',
-                                flexDirection: 'column',
-                                gap: 'var(--space-md)',
-                                paddingTop: 'var(--space-md)',
-                                borderTop: '1px solid var(--border-subtle)'
-                            }}>
+                            <div className="modal-section">
                                 {/* Temperature Settings */}
                                 <div style={{ marginBottom: 'var(--space-sm)' }}>
-                                    <h3 style={{ fontSize: '0.85rem', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: 'var(--space-sm)' }}>
+                                    <h3 className="section-heading" style={{ marginBottom: 'var(--space-sm)' }}>
                                         Temperature Settings
                                     </h3>
-                                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-md)' }}>
+                                    <div className="grid-2-col">
                                         <label>
-                                            <div style={{ marginBottom: '4px', fontSize: '0.9rem', color: 'var(--text-muted)' }}>Nozzle Temp</div>
+                                            <div className="form-label">Nozzle Temp</div>
                                             <input
                                                 name="nozzleTemp"
                                                 value={formData.nozzleTemp || ''}
                                                 onChange={handleChange}
                                                 placeholder="e.g. 200-220"
-                                                style={{ width: '100%', padding: '8px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-focus)', background: 'rgba(0,0,0,0.3)', color: 'white' }}
+                                                className="form-input"
                                             />
                                         </label>
                                         <label>
-                                            <div style={{ marginBottom: '4px', fontSize: '0.9rem', color: 'var(--text-muted)' }}>Bed Temp (°C)</div>
+                                            <div className="form-label">Bed Temp (°C)</div>
                                             <input
                                                 type="number"
                                                 name="bedTemp"
                                                 value={formData.bedTemp || ''}
                                                 onChange={handleNumberChange}
                                                 placeholder="e.g. 60"
-                                                style={{ width: '100%', padding: '8px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-focus)', background: 'rgba(0,0,0,0.3)', color: 'white' }}
+                                                className="form-input"
                                             />
                                         </label>
                                         <label>
-                                            <div style={{ marginBottom: '4px', fontSize: '0.9rem', color: 'var(--text-muted)' }}>Drying Temp (°C)</div>
+                                            <div className="form-label">Drying Temp (°C)</div>
                                             <input
                                                 type="number"
                                                 name="dryingTemp"
                                                 value={formData.dryingTemp || ''}
                                                 onChange={handleNumberChange}
                                                 placeholder="e.g. 50"
-                                                style={{ width: '100%', padding: '8px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-focus)', background: 'rgba(0,0,0,0.3)', color: 'white' }}
+                                                className="form-input"
                                             />
                                         </label>
                                         <label>
-                                            <div style={{ marginBottom: '4px', fontSize: '0.9rem', color: 'var(--text-muted)' }}>Drying Time (hrs)</div>
+                                            <div className="form-label">Drying Time (hrs)</div>
                                             <input
                                                 type="number"
                                                 name="dryingTime"
                                                 value={formData.dryingTime || ''}
                                                 onChange={handleNumberChange}
                                                 placeholder="e.g. 6"
-                                                style={{ width: '100%', padding: '8px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-focus)', background: 'rgba(0,0,0,0.3)', color: 'white' }}
+                                                className="form-input"
                                             />
                                         </label>
                                     </div>
@@ -439,12 +351,12 @@ export function FilamentForm({ isOpen, onClose, onSubmit, initialData = null }: 
 
                                 {/* Material Properties */}
                                 <div style={{ marginBottom: 'var(--space-sm)' }}>
-                                    <h3 style={{ fontSize: '0.85rem', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: 'var(--space-sm)' }}>
+                                    <h3 className="section-heading" style={{ marginBottom: 'var(--space-sm)' }}>
                                         Material Properties
                                     </h3>
-                                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-md)' }}>
+                                    <div className="grid-2-col">
                                         <label>
-                                            <div style={{ marginBottom: '4px', fontSize: '0.9rem', color: 'var(--text-muted)' }}>Density (g/cm³)</div>
+                                            <div className="form-label">Density (g/cm³)</div>
                                             <input
                                                 type="number"
                                                 step="0.01"
@@ -452,39 +364,40 @@ export function FilamentForm({ isOpen, onClose, onSubmit, initialData = null }: 
                                                 value={formData.density || ''}
                                                 onChange={handleNumberChange}
                                                 placeholder="e.g. 1.24"
-                                                style={{ width: '100%', padding: '8px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-focus)', background: 'rgba(0,0,0,0.3)', color: 'white' }}
+                                                className="form-input"
                                             />
                                         </label>
                                         <label>
-                                            <div style={{ marginBottom: '4px', fontSize: '0.9rem', color: 'var(--text-muted)' }}>Spool Weight (g)</div>
+                                            <div className="form-label">Spool Weight (g)</div>
                                             <input
                                                 type="number"
                                                 name="spoolWeight"
                                                 value={formData.spoolWeight || ''}
                                                 onChange={handleNumberChange}
                                                 placeholder="e.g. 200"
-                                                style={{ width: '100%', padding: '8px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-focus)', background: 'rgba(0,0,0,0.3)', color: 'white' }}
+                                                className="form-input"
                                             />
                                         </label>
                                         <label>
-                                            <div style={{ marginBottom: '4px', fontSize: '0.9rem', color: 'var(--text-muted)' }}>Material ID (EAN/UPC)</div>
+                                            <div className="form-label">Material ID (EAN/UPC)</div>
                                             <input
                                                 name="materialId"
                                                 value={formData.materialId || ''}
                                                 onChange={handleChange}
                                                 placeholder="e.g. 8594064310237"
-                                                style={{ width: '100%', padding: '8px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-focus)', background: 'rgba(0,0,0,0.3)', color: 'white' }}
+                                                className="form-input"
                                             />
                                         </label>
                                         <label>
-                                            <div style={{ marginBottom: '4px', fontSize: '0.9rem', color: 'var(--text-muted)' }}>Country Code</div>
+                                            <div className="form-label">Country Code</div>
                                             <input
                                                 name="countryOfOrigin"
                                                 value={formData.countryOfOrigin || ''}
                                                 onChange={handleChange}
                                                 placeholder="e.g. US, DE, CZ"
                                                 maxLength={2}
-                                                style={{ width: '100%', padding: '8px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-focus)', background: 'rgba(0,0,0,0.3)', color: 'white', textTransform: 'uppercase' }}
+                                                className="form-input"
+                                                style={{ textTransform: 'uppercase' }}
                                             />
                                         </label>
                                     </div>
@@ -492,8 +405,8 @@ export function FilamentForm({ isOpen, onClose, onSubmit, initialData = null }: 
 
                                 {/* Tags */}
                                 <div>
-                                    <div style={{ marginBottom: '4px', fontSize: '0.9rem', color: 'var(--text-muted)' }}>Material Tags</div>
-                                    <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
+                                    <div className="form-label">Material Tags</div>
+                                    <div className="flex gap-sm" style={{ marginBottom: '8px' }}>
                                         <input
                                             type="text"
                                             id="tagInput"
@@ -506,14 +419,8 @@ export function FilamentForm({ isOpen, onClose, onSubmit, initialData = null }: 
                                                     input.value = '';
                                                 }
                                             }}
-                                            style={{
-                                                flex: 1,
-                                                padding: '8px',
-                                                borderRadius: 'var(--radius-sm)',
-                                                border: '1px solid var(--border-focus)',
-                                                background: 'rgba(0,0,0,0.3)',
-                                                color: 'white'
-                                            }}
+                                            className="form-input"
+                                            style={{ flex: 1 }}
                                         />
                                         <button
                                             type="button"
@@ -524,46 +431,20 @@ export function FilamentForm({ isOpen, onClose, onSubmit, initialData = null }: 
                                                     input.value = '';
                                                 }
                                             }}
-                                            style={{
-                                                padding: '8px 16px',
-                                                background: 'var(--primary)',
-                                                color: 'black',
-                                                borderRadius: 'var(--radius-sm)',
-                                                fontWeight: '600'
-                                            }}
+                                            className="tag-add-btn"
                                         >
                                             Add
                                         </button>
                                     </div>
                                     {formData.tags && formData.tags.length > 0 && (
-                                        <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
+                                        <div className="flex gap-sm flex-wrap">
                                             {formData.tags.map((tag, idx) => (
-                                                <span
-                                                    key={idx}
-                                                    style={{
-                                                        padding: '4px 8px',
-                                                        background: 'var(--accent-purple)',
-                                                        color: 'white',
-                                                        borderRadius: 'var(--radius-sm)',
-                                                        fontSize: '0.85rem',
-                                                        display: 'flex',
-                                                        alignItems: 'center',
-                                                        gap: '6px'
-                                                    }}
-                                                >
+                                                <span key={idx} className="tag-item">
                                                     {tag}
                                                     <button
                                                         type="button"
                                                         onClick={() => handleRemoveTag(tag)}
-                                                        style={{
-                                                            background: 'none',
-                                                            border: 'none',
-                                                            color: 'white',
-                                                            cursor: 'pointer',
-                                                            padding: '0',
-                                                            fontSize: '1rem',
-                                                            lineHeight: '1'
-                                                        }}
+                                                        className="tag-remove-btn"
                                                     >
                                                         ×
                                                     </button>
@@ -576,14 +457,14 @@ export function FilamentForm({ isOpen, onClose, onSubmit, initialData = null }: 
                                 {/* Additional Metadata */}
                                 <div>
                                     <label>
-                                        <div style={{ marginBottom: '4px', fontSize: '0.9rem', color: 'var(--text-muted)' }}>Manufacturer URL</div>
+                                        <div className="form-label">Manufacturer URL</div>
                                         <input
                                             type="url"
                                             name="manufacturerUrl"
                                             value={formData.manufacturerUrl || ''}
                                             onChange={handleChange}
                                             placeholder="https://example.com/product"
-                                            style={{ width: '100%', padding: '8px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-focus)', background: 'rgba(0,0,0,0.3)', color: 'white' }}
+                                            className="form-input"
                                         />
                                     </label>
                                 </div>
@@ -591,23 +472,14 @@ export function FilamentForm({ isOpen, onClose, onSubmit, initialData = null }: 
                                 {/* Notes */}
                                 <div>
                                     <label>
-                                        <div style={{ marginBottom: '4px', fontSize: '0.9rem', color: 'var(--text-muted)' }}>Notes</div>
+                                        <div className="form-label">Notes</div>
                                         <textarea
                                             name="notes"
                                             value={formData.notes || ''}
                                             onChange={handleChange}
                                             rows={3}
                                             placeholder="Additional notes..."
-                                            style={{
-                                                width: '100%',
-                                                padding: '8px',
-                                                borderRadius: 'var(--radius-sm)',
-                                                border: '1px solid var(--border-focus)',
-                                                background: 'rgba(0,0,0,0.3)',
-                                                color: 'white',
-                                                resize: 'vertical',
-                                                fontFamily: 'inherit'
-                                            }}
+                                            className="form-textarea"
                                         />
                                     </label>
                                 </div>
@@ -616,25 +488,17 @@ export function FilamentForm({ isOpen, onClose, onSubmit, initialData = null }: 
                     </div>
 
                     {/* Sticky Footer Buttons */}
-                    <div style={{
-                        display: 'flex',
-                        gap: 'var(--space-md)',
-                        padding: 'var(--space-lg)',
-                        paddingTop: 'var(--space-md)',
-                        borderTop: '1px solid var(--border-subtle)',
-                        backgroundColor: 'var(--bg-card)',
-                        backdropFilter: 'blur(12px)'
-                    }}>
+                    <div className="modal-footer">
                         <button
                             type="button"
                             onClick={onClose}
-                            style={{ flex: 1, padding: '12px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-focus)', color: 'var(--text-muted)' }}
+                            className="btn-cancel"
                         >
                             Cancel
                         </button>
                         <button
                             type="submit"
-                            style={{ flex: 1, padding: '12px', borderRadius: 'var(--radius-sm)', background: 'var(--primary)', color: 'black', fontWeight: '600' }}
+                            className="btn-submit"
                         >
                             {initialData ? 'Save Changes' : 'Add Roll'}
                         </button>

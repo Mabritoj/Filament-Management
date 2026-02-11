@@ -74,24 +74,14 @@ export function FilterPanel({ filters, onFilterChange, filaments }) {
             <div
                 className={`filter-sidebar ${isCollapsed ? 'collapsed' : ''} ${isMobile && isMobileOpen ? 'mobile-open' : ''} ${isMobile ? 'mobile' : ''}`}
             >
-                {!isCollapsed && (
+                {(!isCollapsed || (isMobile && isMobileOpen)) && (
                     <>
-                        <div style={{
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            alignItems: 'center',
-                            marginBottom: 'var(--space-md)'
-                        }}>
-                            <h3 style={{ fontSize: '1rem', margin: 0 }}>Filters</h3>
+                        <div className="flex flex-between items-center mb-md">
+                            <h3 className="text-xl" style={{ margin: 0 }}>Filters</h3>
                             {hasActiveFilters && (
                                 <button
                                     onClick={clearFilters}
-                                    style={{
-                                        fontSize: '0.75rem',
-                                        color: 'var(--primary)',
-                                        textDecoration: 'underline',
-                                        padding: '4px'
-                                    }}
+                                    className="btn-text"
                                 >
                                     Clear All
                                 </button>
@@ -99,40 +89,25 @@ export function FilterPanel({ filters, onFilterChange, filaments }) {
                         </div>
 
                         {/* Filter Content */}
-                        <div style={{
-                            animation: 'fadeIn 0.2s ease-in',
-                            overflow: 'hidden'
-                        }}>
+                        <div style={{ animation: 'fadeIn 0.2s ease-in', overflow: 'hidden' }}>
                             {/* Brand Filters */}
                             {uniqueBrands.length > 0 && (
-                                <div style={{ marginBottom: 'var(--space-lg)' }}>
-                                    <h4 style={{
-                                        fontSize: '0.85rem',
-                                        color: 'var(--text-muted)',
-                                        textTransform: 'uppercase',
-                                        marginBottom: 'var(--space-sm)',
-                                        letterSpacing: '0.05em'
-                                    }}>
+                                <div className="mb-lg">
+                                    <h4 className="section-heading mb-sm">
                                         Brand
                                     </h4>
                                     {uniqueBrands.map(brand => (
                                         <label
                                             key={brand}
-                                            style={{
-                                                display: 'flex',
-                                                alignItems: 'center',
-                                                gap: 'var(--space-sm)',
-                                                marginBottom: 'var(--space-xs)',
-                                                cursor: 'pointer'
-                                            }}
+                                            className="filter-label"
                                         >
                                             <input
                                                 type="checkbox"
                                                 checked={filters.brands?.includes(brand) || false}
                                                 onChange={() => handleCheckboxChange('brands', brand)}
-                                                style={{ cursor: 'pointer' }}
+                                                className="filter-checkbox"
                                             />
-                                            <span style={{ fontSize: '0.9rem' }}>{brand}</span>
+                                            <span className="text-md">{brand}</span>
                                         </label>
                                     ))}
                                 </div>
@@ -140,34 +115,22 @@ export function FilterPanel({ filters, onFilterChange, filaments }) {
 
                             {/* Type Filters */}
                             {uniqueTypes.length > 0 && (
-                                <div style={{ marginBottom: 'var(--space-lg)' }}>
-                                    <h4 style={{
-                                        fontSize: '0.85rem',
-                                        color: 'var(--text-muted)',
-                                        textTransform: 'uppercase',
-                                        marginBottom: 'var(--space-sm)',
-                                        letterSpacing: '0.05em'
-                                    }}>
+                                <div className="mb-lg">
+                                    <h4 className="section-heading mb-sm">
                                         Material Type
                                     </h4>
                                     {uniqueTypes.map(type => (
                                         <label
                                             key={type}
-                                            style={{
-                                                display: 'flex',
-                                                alignItems: 'center',
-                                                gap: 'var(--space-sm)',
-                                                marginBottom: 'var(--space-xs)',
-                                                cursor: 'pointer'
-                                            }}
+                                            className="filter-label"
                                         >
                                             <input
                                                 type="checkbox"
                                                 checked={filters.types?.includes(type) || false}
                                                 onChange={() => handleCheckboxChange('types', type)}
-                                                style={{ cursor: 'pointer' }}
+                                                className="filter-checkbox"
                                             />
-                                            <span style={{ fontSize: '0.9rem' }}>{type}</span>
+                                            <span className="text-md">{type}</span>
                                         </label>
                                     ))}
                                 </div>
@@ -176,33 +139,21 @@ export function FilterPanel({ filters, onFilterChange, filaments }) {
                             {/* Color Filters */}
                             {uniqueColors.length > 0 && (
                                 <div>
-                                    <h4 style={{
-                                        fontSize: '0.85rem',
-                                        color: 'var(--text-muted)',
-                                        textTransform: 'uppercase',
-                                        marginBottom: 'var(--space-sm)',
-                                        letterSpacing: '0.05em'
-                                    }}>
+                                    <h4 className="section-heading mb-sm">
                                         Color
                                     </h4>
                                     {uniqueColors.map(color => (
                                         <label
                                             key={color}
-                                            style={{
-                                                display: 'flex',
-                                                alignItems: 'center',
-                                                gap: 'var(--space-sm)',
-                                                marginBottom: 'var(--space-xs)',
-                                                cursor: 'pointer'
-                                            }}
+                                            className="filter-label"
                                         >
                                             <input
                                                 type="checkbox"
                                                 checked={filters.colors?.includes(color) || false}
                                                 onChange={() => handleCheckboxChange('colors', color)}
-                                                style={{ cursor: 'pointer' }}
+                                                className="filter-checkbox"
                                             />
-                                            <span style={{ fontSize: '0.9rem' }}>{color}</span>
+                                            <span className="text-md">{color}</span>
                                         </label>
                                     ))}
                                 </div>
@@ -219,7 +170,7 @@ export function FilterPanel({ filters, onFilterChange, filaments }) {
                 style={{
                     position: 'fixed',
                     right: isCollapsed ? '16px' : '296px',
-                    top: '80px',
+                    top: '96px',
                     width: '36px',
                     height: '36px',
                     borderRadius: '50%',
